@@ -1,78 +1,154 @@
 <!doctype html>
+
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ML App with Flask</title>
+    <title>Drug Recommendation app</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+      body {
+        background: #e3f2fd;
+        font-family: 'Segoe UI', Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      main {
+        max-width: 600px;
+        margin: 40px auto;
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+        padding: 32px 24px;
+        text-align: center;
+      }
+      h1 {
+        color: #1976d2;
+        margin-bottom: 8px;
+      }
+      h2, h3 {
+        color: #1565c0;
+        margin-top: 24px;
+      }
+      label {
+        font-weight: bold;
+        color: #1976d2;
+        margin-top: 12px;
+      }
+      input, select {
+        margin-top: 6px;
+        margin-bottom: 16px;
+        padding: 6px 10px;
+        border-radius: 6px;
+        border: 1px solid #90caf9;
+        width: 60%;
+      }
+      button {
+        background: #1976d2;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        padding: 10px 24px;
+        font-size: 1.1em;
+        cursor: pointer;
+        margin-top: 12px;
+        transition: background 0.2s;
+      }
+      button:hover {
+        background: #1565c0;
+      }
+      .icon {
+        font-size: 1.3em;
+        margin-right: 8px;
+        color: #1976d2;
+      }
+      .table {
+        margin: 0 auto;
+        border-collapse: collapse;
+        width: 100%;
+      }
+      .table th, .table td {
+        border: 1px solid #90caf9;
+        padding: 6px 10px;
+      }
+      .table th {
+        background: #bbdefb;
+      }
+      .table tr:nth-child(even) {
+        background: #e3f2fd;
+      }
+      .error {
+        color: #d32f2f;
+        font-weight: bold;
+        margin-top: 12px;
+      }
+      .result {
+        color: #388e3c;
+        font-weight: bold;
+        margin-top: 16px;
+      }
+    </style>
   </head>
   <body>
     <main>
-      <h1>ML App with Flask</h1>
-      <p>Predicción del tipo de medicamento con Random Forest.</p>
-      <p>Servidor listo para ejecutarse con Waitress.</p>
+      <h1><i class="fa-solid fa-flask icon"></i>Drug Recommendation app</h1>
+      <p><i class="fa-solid fa-pills icon"></i>Predicción del tipo de medicamento</p>
 
-      <h2>Modelo</h2>
+      <h2><i class="fa-solid fa-robot icon"></i>Modelo</h2>
       <p><strong>Algoritmo:</strong> RandomForestClassifier</p>
       <p><strong>Accuracy (test):</strong> {{ model_accuracy }}</p>
 
-      <h2>Ingresar datos del paciente</h2>
-      <form method="post">
-        <label for="Age">Edad:</label>
-        <input id="Age" name="Age" type="number" min="1" max="120" required value="{{ form_data.Age }}" />
-
-        <br /><br />
-
-        <label for="Sex">Sexo:</label>
-        <select id="Sex" name="Sex">
-          <option value="M" {% if form_data.Sex == "M" %}selected{% endif %}>M</option>
-          <option value="F" {% if form_data.Sex == "F" %}selected{% endif %}>F</option>
-        </select>
-
-        <br /><br />
-
-        <label for="BP">Presión arterial:</label>
-        <select id="BP" name="BP">
-          <option value="HIGH" {% if form_data.BP == "HIGH" %}selected{% endif %}>HIGH</option>
-          <option value="NORMAL" {% if form_data.BP == "NORMAL" %}selected{% endif %}>NORMAL</option>
-          <option value="LOW" {% if form_data.BP == "LOW" %}selected{% endif %}>LOW</option>
-        </select>
-
-        <br /><br />
-
-        <label for="Cholesterol">Colesterol:</label>
-        <select id="Cholesterol" name="Cholesterol">
-          <option value="HIGH" {% if form_data.Cholesterol == "HIGH" %}selected{% endif %}>HIGH</option>
-          <option value="NORMAL" {% if form_data.Cholesterol == "NORMAL" %}selected{% endif %}>NORMAL</option>
-        </select>
-
-        <br /><br />
-
-        <label for="Na_to_K">Relación Na_to_K:</label>
-        <input id="Na_to_K" name="Na_to_K" type="number" step="0.001" required value="{{ form_data.Na_to_K }}" />
-
-        <br /><br />
-        <button type="submit">Predecir medicamento</button>
+      <h2><i class="fa-solid fa-user icon"></i>Ingresar datos del paciente</h2>
+      <form method="post" style="display: flex; flex-direction: column; align-items: center;">
+        <div style="display: flex; flex-wrap: wrap; gap: 18px; justify-content: center; margin-bottom: 0;">
+          <div style="display: flex; flex-direction: column; align-items: flex-start;">
+            <label for="Age"><i class="fa-solid fa-user icon"></i>Edad:</label>
+            <input id="Age" name="Age" type="number" min="1" max="120" required value="{{ form_data.Age }}" style="width: 120px;" />
+          </div>
+          <div style="display: flex; flex-direction: column; align-items: flex-start;">
+            <label for="Sex"><i class="fa-solid fa-venus-mars icon"></i>Sexo:</label>
+            <select id="Sex" name="Sex" style="width: 120px;">
+              <option value="M" {% if form_data.Sex == "M" %}selected{% endif %}>Masculino</option>
+              <option value="F" {% if form_data.Sex == "F" %}selected{% endif %}>Femenino</option>
+            </select>
+          </div>
+          <div style="display: flex; flex-direction: column; align-items: flex-start;">
+            <label for="BP"><i class="fa-solid fa-heartbeat icon"></i>Presión arterial:</label>
+            <select id="BP" name="BP" style="width: 120px;">
+              <option value="HIGH" {% if form_data.BP == "HIGH" %}selected{% endif %}>Alta</option>
+              <option value="NORMAL" {% if form_data.BP == "NORMAL" %}selected{% endif %}>Normal</option>
+              <option value="LOW" {% if form_data.BP == "LOW" %}selected{% endif %}>Baja</option>
+            </select>
+          </div>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 18px; justify-content: center; margin-bottom: 18px; margin-top: 0;">
+          <div style="display: flex; flex-direction: column; align-items: flex-start;">
+            <label for="Cholesterol"><i class="fa-solid fa-dna icon"></i>Colesterol:</label>
+            <select id="Cholesterol" name="Cholesterol" style="width: 120px;">
+              <option value="HIGH" {% if form_data.Cholesterol == "HIGH" %}selected{% endif %}>Alto</option>
+              <option value="NORMAL" {% if form_data.Cholesterol == "NORMAL" %}selected{% endif %}>Normal</option>
+            </select>
+          </div>
+          <div style="display: flex; flex-direction: column; align-items: flex-start;">
+            <label for="Na_to_K"><i class="fa-solid fa-vial icon"></i>Relación Sodio/Potasio:</label>
+            <input id="Na_to_K" name="Na_to_K" type="number" step="0.001" required value="{{ form_data.Na_to_K }}" style="width: 120px;" />
+          </div>
+        </div>
+        <button type="submit"><i class="fa-solid fa-magnifying-glass icon"></i>Predecir medicamento</button>
       </form>
 
       {% if form_error %}
-      <p><strong>Error:</strong> {{ form_error }}</p>
+      <p class="error"><i class="fa-solid fa-circle-exclamation icon"></i>{{ form_error }}</p>
       {% endif %}
 
       {% if predicted_drug %}
-      <h3>Resultado de predicción</h3>
-      <p><strong>Medicamento sugerido:</strong> {{ predicted_drug }}</p>
-      <p><strong>Confianza estimada:</strong> {{ prediction_confidence }}%</p>
+      <div class="result">
+        <p><strong>Medicamento sugerido:</strong> {{ predicted_drug }}</p>
+        <p><strong>Confianza estimada:</strong> {{ prediction_confidence }}%</p>
+      </div>
       {% endif %}
 
-      <h2>Resumen del dataset</h2>
-      <ul>
-        <li><strong>Archivo:</strong> {{ dataset_info.filename }}</li>
-        <li><strong>Filas:</strong> {{ dataset_info.rows }}</li>
-        <li><strong>Columnas:</strong> {{ dataset_info.columns }}</li>
-      </ul>
-
-      <h3>Vista previa (10 filas)</h3>
-      {{ dataset_info.table_html | safe }}
     </main>
   </body>
 </html>
