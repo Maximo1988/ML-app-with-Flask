@@ -7,7 +7,7 @@ Este proyecto busca predecir qué tipo de medicamento es más adecuado para un p
 - `src/app.py`: App Flask, pipeline de entrenamiento y endpoint de predicción.
 - `src/templates/index.html`: Interfaz web con formulario de paciente y resultado.
 - `src/explore.ipynb`: Notebook para EDA y evaluación del modelo.
-- `dataset/drug.csv`: Dataset principal usado por notebook y app.
+- `dataset/drug.csv`: Dataset principal (de Kaggle) usado por notebook y app.
 - `dataset/drug_data.py`: Script auxiliar para generar/actualizar `dataset/drug.csv` desde la ruta de origen.
 - `requirements.txt`: Dependencias mínimas necesarias.
 - `data/`: Carpetas opcionales (`raw`, `interim`, `processed`) para futuras versiones del dataset.

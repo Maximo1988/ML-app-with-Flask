@@ -7,7 +7,7 @@ This project aims to predict the most suitable medication type for a patient bas
 - `src/app.py`: Flask app, model training pipeline, and prediction endpoint.
 - `src/templates/index.html`: User interface with patient form and prediction output.
 - `src/explore.ipynb`: EDA and model evaluation notebook.
-- `dataset/drug.csv`: Main dataset used by notebook and app.
+- `dataset/drug.csv`: Main dataset (from Kaggle) used by notebook and app.
 - `dataset/drug_data.py`: Utility script to generate/update `dataset/drug.csv` from the original source path.
 - `requirements.txt`: Minimal required dependencies.
 - `data/`: Optional folders (`raw`, `interim`, `processed`) for future dataset versioning.
