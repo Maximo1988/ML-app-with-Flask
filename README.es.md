@@ -2,6 +2,9 @@
 
 Este proyecto busca predecir qué tipo de medicamento es más adecuado para un paciente según sus características de salud (`Age`, `Sex`, `BP`, `Cholesterol`, `Na_to_K`). El flujo incluye EDA en notebook, entrenamiento del modelo Random Forest y una app Flask donde el usuario ingresa datos y recibe una predicción.
 
+Puedes revisar su funcionalidad en el siguiente enlace:
+https://ml-app-with-flask.onrender.com
+
 ## Organización del Proyecto
 
 - `src/app.py`: App Flask, pipeline de entrenamiento y endpoint de predicción.

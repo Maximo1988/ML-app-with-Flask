@@ -2,6 +2,9 @@
 
 This project aims to predict the most suitable medication type for a patient based on health-related features (`Age`, `Sex`, `BP`, `Cholesterol`, `Na_to_K`). The workflow includes EDA in a notebook, model training with Random Forest, and an interactive Flask app where users enter patient data and receive a predicted drug.
 
+You can check its functionality at the following link:
+https://ml-app-with-flask.onrender.com
+
 ## Project Organization
 
 - `src/app.py`: Flask app, model training pipeline, and prediction endpoint.

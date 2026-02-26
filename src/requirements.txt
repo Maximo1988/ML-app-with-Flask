@@ -1,0 +1,6 @@
+flask>=3.0.0
+matplotlib>=3.7.0
+pandas>=2.3.3
+scikit-learn
+seaborn>=0.12.2
+waitress>=3.0.0
